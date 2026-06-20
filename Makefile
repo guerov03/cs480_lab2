@@ -1,23 +1,24 @@
 ############################
-
-Makefile assignment 2
-
-Eduardo Valdovinos cssc3166
-Chris Palomares    ________  --> Please use for grading
+#
+# Makefile assignment 2
+#
+# Eduardo Valdovinos cssc3166
+# Chris Palomares    cssc3146  --> Please use for grading
 
 ###########################
 
 
 EXEC = xsh
 CC = g++
-FLAGS = -Wall -Wextra -std-c++17
-FILES = main.cpp
+FLAGS = -Wall -Wextra -std=c++17
+
+FILES = main.cpp parser.cpp pipeline.cpp
 
 $(EXEC):
-	$(CC) $(FLAGS) -o $(EXEC) $(FILES)
+	g++ $(FLAGS) -o $(EXEC) $(FILES)
 
 clean:
-	rm -f*.o core a.out $(EXEC)
+	rm -f *.o core a.out $(EXEC)
 
-##########[ EOF: Makefile ]#############
+########## EOF #############
 
