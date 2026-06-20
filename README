@@ -44,7 +44,7 @@
 			exit
 
 
-	1 argument allowed per command
+	Commands may include arguments, including commands used in pipelines.
 
 
 	To close --> type "exit"
@@ -78,10 +78,25 @@
 
 	No known bugs yet.
 
+	Division of Work:
 	
+		Eduardo Valdovinos (cssc3166)
+                - Created the initial project structure
+                - Implemented the shell loop
+                - Implemented executable validation
+                - Implemented single command execution
+
+		Chris Palomares (cssc3146)
+                - Implemented splitInput()
+                - Implemented validateInput()
+                - Implemented buildCommands()
+                - Implemented executePipeline()
+                - Updated the Makefile
+                - Tested valid and invalid command input	
+
 	Lessons Learned:
 
-        In this assignment, we learned how to create child processes using fork(),
-        execute programs with execvp(), and wait for child processes using waitpid().
-        We also learned how pipes work through pipe() and dup2(), along with command
+        In this assignment, we learned how to create child processes using fork(), 
+	execute programs with execvp(), and wait for child processes using waitpid().
+	We also learned how pipes work through pipe() and dup2(), along with command
         parsing, input validation, and process communication.

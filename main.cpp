@@ -39,7 +39,7 @@ bool isExecutable(const string& filename) {
 }
 
 void executeCommand(const vector<string>& command) { //runs a command in a child process
-	if (command.empty()) { //makes sure the command is not blamk
+	if (command.empty()) { //makes sure the command is not blank
 		return;
 }
 
@@ -90,7 +90,7 @@ void runShell() {
 
 		vector<string> tokens = splitInput(input);
 
-		if (tokens.empty()) { // igmore blanks
+		if (tokens.empty()) { // ignore blanks
 			continue;
 		}
 
