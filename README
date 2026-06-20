@@ -1,0 +1,77 @@
+	Eduardo Valdovinos   cssc3166
+	Chris Palomares      ________ --> Please use for grading
+
+						     
+						     README			
+
+						CS 480, Summer 2026
+
+						  Assignment #2
+
+	File Manifest:
+		
+		main.cpp
+		partner.cpp 
+		shell.h
+		Makefile
+		README
+
+
+
+
+	Compile Instructions:
+	
+		Enter a2 directory and type "make". This creates exe named xsh
+
+
+
+
+	Operating Instructions:
+		
+		Run shell by doing:
+			
+			./xsh
+		
+		Shell displays a prompt using class account username
+
+		Valid formats for input:
+			
+			executablefilename
+			executablefilename argument
+			executablefilename | executablefilename
+			executablefilename | executablefilename | ...
+			exit
+
+
+	1 argument allowed per command
+
+
+	To close --> type "exit"
+
+	
+
+	Design Decisions:
+
+		- All functions stored in main.cpp:
+
+			- shell control
+			- command execution
+			- input parsing
+			- commmand building
+			- pipeline execution
+
+		- The USER environment variable is used to show account username in the shell prompt.
+		- When a command is entered without a slash, it is searched using PATH environment variable.
+		- Child processes are created with fork()
+		- execvp() executes programs
+		- waitpid() waits for programs to finish
+		
+
+	No known bugs yet.
+
+	
+	Lessons Learned:
+		
+		In this assignment, we learned how to create child processes uisng fork(),
+		running/waiting for processes with execvp() and waitpid(). We also learned 
+		how pipes are applied to shells using dup2(), input parsing, and input validation. 
