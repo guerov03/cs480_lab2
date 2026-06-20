@@ -44,8 +44,8 @@
 			exit
 
 
-	Commands may include arguments, including commands used in pipelines.
-
+	Only non-piped commands may include one argument. Piped commands use 
+	executable names only.
 
 	To close --> type "exit"
 

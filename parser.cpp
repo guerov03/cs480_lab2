@@ -66,33 +66,60 @@ bool validateInput(const std::vector<std::string>& tokens)
         return false;
     }
 
-    // Reject a pipe as the first token.
-    if (tokens.front() == "|")
+    // The exit command is only valid by itself.
+    if (tokens[0] == "exit")
     {
-        return false;
+        return tokens.size() == 1;
     }
 
-    // Reject a pipe as the last token.
-    if (tokens.back() == "|")
-    {
-        return false;
-    }
+    bool hasPipe = false;
 
-    // Reject invalid pipe usage.
-    for (size_t i = 1; i < tokens.size(); i++)
+    // Reject bad pipe tokens like "||" or "ls|sort".
+    for (const std::string& token : tokens)
     {
-    // Reject tokens like "||" because only a single pipe is valid.
-    if (tokens[i].find('|') != std::string::npos && tokens[i] != "|")
-    {
-        return false;
-    }
-}
-    // Reject consecutive pipes such as "ls || sort".
-    for (size_t i = 1; i < tokens.size(); i++)
-    {
-        if (tokens[i] == "|" && tokens[i - 1] == "|")
+        if (token == "|")
+        {
+            hasPipe = true;
+        }
+
+        if (token.find('|') != std::string::npos && token != "|")
         {
             return false;
+        }
+    }
+
+    // Without pipes, only these are valid:
+    // executablefilename
+    // executablefilename argument
+    if (!hasPipe)
+    {
+        return tokens.size() == 1 || tokens.size() == 2;
+    }
+
+    // With pipes, only this pattern is valid:
+    // executable | executable | executable
+    if (tokens.front() == "|" || tokens.back() == "|")
+    {
+        return false;
+    }
+
+    for (size_t i = 0; i < tokens.size(); i++)
+    {
+        if (i % 2 == 0)
+        {
+            // Commands must be in even positions.
+            if (tokens[i] == "|")
+            {
+                return false;
+            }
+        }
+        else
+        {
+            // Pipes must be in odd positions.
+            if (tokens[i] != "|")
+            {
+                return false;
+            }
         }
     }
 
