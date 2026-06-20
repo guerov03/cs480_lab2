@@ -78,6 +78,15 @@ bool validateInput(const std::vector<std::string>& tokens)
         return false;
     }
 
+    // Reject invalid pipe usage.
+    for (size_t i = 1; i < tokens.size(); i++)
+    {
+    // Reject tokens like "||" because only a single pipe is valid.
+    if (tokens[i].find('|') != std::string::npos && tokens[i] != "|")
+    {
+        return false;
+    }
+}
     // Reject consecutive pipes such as "ls || sort".
     for (size_t i = 1; i < tokens.size(); i++)
     {
