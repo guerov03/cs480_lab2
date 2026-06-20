@@ -89,3 +89,52 @@ bool validateInput(const std::vector<std::string>& tokens)
 
     return true;
 }
+
+/*
+ * buildCommands()
+ *
+ * Organize the token list into separate commands.
+ * Each pipe symbol marks the beginning of a new command.
+ *
+ * Example:
+ * Input:
+ * ["ls", "-la", "|", "sort", "-fi"]
+ *
+ * Output:
+ * [
+ *  ["ls", "-la"],
+ *  ["sort", "-fi"]
+ * ]
+ */
+
+std::vector<std::vector<std::string>>
+buildCommands(const std::vector<std::string>& tokens)
+{
+    std::vector<std::vector<std::string>> commands;
+    std::vector<std::string> currentCommand;
+
+    // Process each token in order.
+    for (const std::string& token : tokens)
+    {
+        // When a pipe is found, save the current command
+        // and start building the next one.
+        if (token == "|")
+        {
+            commands.push_back(currentCommand);
+            currentCommand.clear();
+        }
+        else
+        {
+            currentCommand.push_back(token);
+        }
+    }
+
+    // Add the final command after the loop finishes.
+    if (!currentCommand.empty())
+    {
+        commands.push_back(currentCommand);
+    }
+
+    return commands;
+}
+
