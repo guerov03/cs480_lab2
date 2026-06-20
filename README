@@ -1,5 +1,5 @@
 	Eduardo Valdovinos   cssc3166
-	Chris Palomares      ________ --> Please use for grading
+	Chris Palomares      cssc3146 --> Please use for grading
 
 						     
 						     README			
@@ -11,7 +11,8 @@
 	File Manifest:
 		
 		main.cpp
-		partner.cpp 
+		parser.cpp
+		pipeline.cpp 
 		shell.h
 		Makefile
 		README
@@ -48,30 +49,39 @@
 
 	To close --> type "exit"
 
-	
-
 	Design Decisions:
 
-		- All functions stored in main.cpp:
+        - Functions are separated into multiple source files.
 
-			- shell control
-			- command execution
-			- input parsing
-			- commmand building
-			- pipeline execution
+                main.cpp
+                        - shell control
+                        - executable validation
+                        - command execution
 
-		- The USER environment variable is used to show account username in the shell prompt.
-		- When a command is entered without a slash, it is searched using PATH environment variable.
-		- Child processes are created with fork()
-		- execvp() executes programs
-		- waitpid() waits for programs to finish
+                parser.cpp
+                        - input parsing
+                        - input validation
+                        - command building
+
+                pipeline.cpp
+                        - pipeline execution
+
+                shell.h
+                        - shared function declarations
+
+        - The USER environment variable is used to show the account username in the shell prompt.
+        - When a command is entered without a slash, it is searched using the PATH environment variable.
+        - Child processes are created using fork().
+        - execvp() executes programs.
+        - waitpid() waits for child processes to finish.
 		
 
 	No known bugs yet.
 
 	
 	Lessons Learned:
-		
-		In this assignment, we learned how to create child processes uisng fork(),
-		running/waiting for processes with execvp() and waitpid(). We also learned 
-		how pipes are applied to shells using dup2(), input parsing, and input validation. 
+
+        In this assignment, we learned how to create child processes using fork(),
+        execute programs with execvp(), and wait for child processes using waitpid().
+        We also learned how pipes work through pipe() and dup2(), along with command
+        parsing, input validation, and process communication.
